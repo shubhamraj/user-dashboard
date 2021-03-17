@@ -1,0 +1,54 @@
+
+<nav class="navbar navbar-dark bg-dark">
+    <div class="text-white">User Profile</div>
+    <button class="btn btn-outline-info btn my-2 my-sm-0" type="submit" (click)="Logout()">Logout</button>
+</nav>
+
+<div class="userlist">
+    <div class="container-lg">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <!-- <h2>Users Profile</h2> -->
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-info add-row border-0" (click)="openAddModal(null)"><i
+                                class="fa fa-plus"></i> Add New</button>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-bordered">
+                <thead class="text-white text-center">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email ID</th>
+                        <th>Date Of Birth</th>
+                        <th>Address</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let list of userDetailsList">
+                        <td>{{list.name}}</td>
+                        <td>{{list.email}}</td>
+                        <td>{{list.dob}}</td>
+                        <td>{{list.address}}</td>
+                        <td class="btn-style">
+                            <a class="text-success" title="Add" data-toggle="tooltip"
+                                (click)="openDisplayModal(list.id)"><i class="fa fa-user"></i></a>
+                            <a class="add" title="Add" data-toggle="tooltip" (click)="onUpdateUser(list)">
+                                <i class="material-icons" aria-hidden="true"></i></a>
+                            <a class="edit" title="Edit" data-toggle="tooltip" (click)="onEditUser(list)">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </a>
+                            <a class="delete" title="Delete" data-toggle="modal" (click)="onRemoveUser(list)">
+                                <i class="fa fa-window-close" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

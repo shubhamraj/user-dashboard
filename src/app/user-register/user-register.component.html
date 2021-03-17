@@ -1,0 +1,53 @@
+<div class="register-page">
+  <div class="form">
+    <form class="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group mb-10">
+        <input type="email" placeholder="Email" formControlName="emailId" class="form-control"
+          [ngClass]="{ 'is-invalid': (submitted || f.emailId.dirty || f.emailId.touched) && f.emailId.errors }" />
+        <div *ngIf=" (submitted || f.emailId.dirty || f.emailId.touched) && f.emailId.errors" class="invalid-feedback">
+          <div *ngIf="f.emailId.errors.required">Email is required</div>
+          <div *ngIf="f.emailId.errors.email">Email must be a valid email address</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="text" placeholder="Username" formControlName="username" class="form-control"
+          [ngClass]="{ 'is-invalid': (submitted || f.username.dirty || f.username.touched) && f.username.errors }" />
+        <div *ngIf="(submitted || f.username.dirty || f.username.touched) && f.username.errors"
+          class="invalid-feedback">
+          <div *ngIf="f.username.errors.required">Username is required</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="password" placeholder="Password" formControlName="password" class="form-control"
+          [ngClass]="{ 'is-invalid':(submitted || f.password.dirty || f.password.touched) && f.password.errors }" />
+        <div *ngIf="(submitted || f.password.dirty || f.password.touched) && f.password.errors"
+          class="invalid-feedback">
+          <div *ngIf="f.password.errors.required">Password is required</div>
+          <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input type="password" placeholder="Confrim Password" formControlName="cpassword" class="form-control"
+          [ngClass]="{ 'is-invalid': (submitted || f.cpassword.dirty || f.cpassword.touched) && f.cpassword.errors }" />
+        <div *ngIf="(submitted || f.cpassword.dirty || f.cpassword.touched) && f.cpassword.errors"
+          class="invalid-feedback">
+          <div *ngIf="f.cpassword.errors.required">Confrim Password is required</div>
+          <div *ngIf="f.cpassword.errors.minlength">Confrim Password must be at least 6 characters</div>
+          <div *ngIf="f.cpassword.errors.mustMatch">Passwords does not match</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          Register
+        </button>
+      </div>
+      <p class="message">Already registered? <a routerLink="/login">Sign In</a></p>
+    </form>
+  </div>
+</div>

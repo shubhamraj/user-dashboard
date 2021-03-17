@@ -1,0 +1,100 @@
+<div class="" id="userListForm">
+    <div class="modal-dialog mt-2" role="document">
+        <div class="modal-content border-0">
+            <div class="modal-header text-center border-0">
+                <h5 *ngIf="modalStatus" class="modal-title w-100 font-weight-bold">ADD USER</h5>
+                <h5 *ngIf="!modalStatus" class="modal-title w-100 font-weight-bold">UPDATE USER</h5>
+                <div class="btn-sm btn-danger" (click)="closeModal()">
+                    <i class="fa fa-close"></i>
+                </div>
+            </div>
+
+            <!-- reactive forms group -->
+            <form [formGroup]="userDetailsForm" (ngSubmit)="onSaveUserList()">
+                <div class="modal-body mx-3">
+                    <div class="form-group">
+                        <div class="md-form mb-2">
+                            <label data-error="wrong" data-success="right" for="orangeForm-name">Name</label>
+                            <input type="text" id="orangeForm-name" class="form-control validate" formControlName="name"
+                                [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                <div *ngIf="f.name.errors.required">Name is required</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="md-form mb-2">
+                            <label data-error="wrong" data-success="right" for="orangeForm-email">Email</label>
+                            <input type="email" id="orangeForm-email" class="form-control validate"
+                                formControlName="email"
+                                [ngClass]="{ 'is-invalid':  (submitted || f.email.dirty || f.email.touched) && f.email.errors }">
+                            <div *ngIf=" (submitted || f.email.dirty || f.email.touched) && f.email.errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f.email.errors.required">Email is required</div>
+                                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="md-form mb-2">
+                            <label data-error="" data-success="right" for="orangeForm-mobile">Mobile Number</label>
+                            <input type="number" id="orangeForm-mobile" class="form-control validate"
+                                formControlName="mobile"
+                                [ngClass]="{ 'is-invalid':  (submitted || f.mobile.dirty || f.mobile.touched) && f.mobile.errors }">
+                            <div *ngIf=" (submitted || f.mobile.dirty || f.mobile.touched) && f.mobile.errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f.mobile.errors.required">Mobile Number is required</div>
+                                <div *ngIf="f.mobile.errors.pattern">Mobile Number must be a valid</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="md-form mb-2">
+                            <label data-error="wrong" data-success="right" for="orangeForm-dob">Date of birth</label>
+                            <input class="form-control" type="date" id="orangeForm-dob" class="form-control validate"
+                                formControlName="dob" [ngClass]="{ 'is-invalid': submitted && f.dob.errors }">
+                            <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
+                                <div *ngIf="f.dob.errors.required">Date of Birth is required</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="md-form mb-2">
+                        <div class="form-group">
+                            <label data-error="wrong" data-success="right" for="orangeForm-address">Address</label>
+                            <input type="text" id="orangeForm-address" class="form-control validate"
+                                formControlName="address" [ngClass]="{ 'is-invalid': submitted && f.address.errors }">
+                            <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                                <div *ngIf="f.address.errors.required">Address is required</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="modal-footer d-flex justify-content-center border-0 p-0 m-0">
+                    <div class="form-group">
+
+                        <button *ngIf="modalStatus" class="btn btn-success" [disabled]="loading">
+                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Save
+                        </button>
+
+                        <button *ngIf="!modalStatus" class="btn btn-info" [disabled]="loading">
+                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Update
+                        </button>
+
+                        <button class="btn btn-danger ml-3" type="button" data-dismiss="modal"
+                            aria-label="Close">Cancel</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
